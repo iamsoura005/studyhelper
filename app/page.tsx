@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import PixelBlast from '@/components/PixelBlast';
 import StaggeredMenu from '@/components/StaggeredMenu';
-import { Subject } from '@/lib/db';
+import { Subject } from '@/lib/db-simple';
 import { formatCurrency } from '@/lib/utils';
 import { BookOpen, Lock } from 'lucide-react';
 

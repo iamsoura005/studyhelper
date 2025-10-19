@@ -1,25 +1,14 @@
 import { NextResponse } from 'next/server';
-import { initDatabase, createUser, getUserByEmail } from '@/lib/db';
-import bcrypt from 'bcryptjs';
+import { initDatabase } from '@/lib/db-simple';
 
 export async function GET() {
   try {
     await initDatabase();
 
-    // Create admin user if not exists
-    const adminEmail = process.env.ADMIN_EMAIL || 'admin@studyhelper.com';
-    const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
-
-    const existingAdmin = await getUserByEmail(adminEmail);
-    
-    if (!existingAdmin) {
-      const hashedPassword = await bcrypt.hash(adminPassword, 10);
-      await createUser(adminEmail, hashedPassword, 'admin');
-    }
-
     return NextResponse.json({ 
-      message: 'Database initialized successfully',
-      adminEmail: adminEmail
+      message: 'Database initialized successfully (using Vercel KV)',
+      adminEmail: process.env.ADMIN_EMAIL || 'sourasantadutta@gmail.com',
+      note: 'No PostgreSQL setup needed!'
     });
   } catch (error) {
     console.error('Error initializing database:', error);

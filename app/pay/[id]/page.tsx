@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter, useParams } from 'next/navigation';
 import PixelBlast from '@/components/PixelBlast';
-import { Subject } from '@/lib/db';
+import { Subject } from '@/lib/db-simple';
 import { formatCurrency } from '@/lib/utils';
 import { QrCode, ArrowLeft } from 'lucide-react';
 
@@ -36,7 +36,7 @@ export default function PaymentPage() {
     try {
       const response = await fetch('/api/subjects');
       const data = await response.json();
-      const foundSubject = data.find((s: Subject) => s.id === parseInt(subjectId));
+      const foundSubject = data.find((s: Subject) => s.id === subjectId);
       
       // Override price with fixed price
       if (foundSubject) {

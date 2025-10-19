@@ -45,7 +45,7 @@ export default function MyNotesPage() {
     }
   };
 
-  const getSubjectById = (id: number) => {
+  const getSubjectById = (id: string) => {
     return subjects.find((s) => s.id === id);
   };
 

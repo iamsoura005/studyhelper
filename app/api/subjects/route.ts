@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import { getAllSubjects, createSubject, deleteSubject } from '@/lib/db';
+import { getAllSubjects, createSubject, deleteSubject } from '@/lib/db-simple';
 import { uploadPDF, deletePDF } from '@/lib/storage';
 
 export async function GET() {
@@ -57,7 +57,7 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: 'Subject ID required' }, { status: 400 });
     }
 
-    await deleteSubject(parseInt(id));
+    await deleteSubject(id);
 
     return NextResponse.json({ success: true });
   } catch (error) {

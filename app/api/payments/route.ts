@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import { createPayment, getAllPayments, updatePaymentStatus, getPaymentsByEmail } from '@/lib/db';
+import { createPayment, getAllPayments, updatePaymentStatus, getPaymentsByEmail } from '@/lib/db-simple';
 
 export async function GET(request: NextRequest) {
   try {
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
 
     const payment = await createPayment(
       session.user.email,
-      parseInt(subjectId),
+      subjectId.toString(),
       parseFloat(amount),
       transactionId
     );
@@ -71,7 +71,7 @@ export async function PATCH(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
     }
 
-    const payment = await updatePaymentStatus(parseInt(paymentId), status);
+    const payment = await updatePaymentStatus(paymentId.toString(), status);
 
     return NextResponse.json(payment);
   } catch (error) {

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import PixelBlast from '@/components/PixelBlast';
-import { Subject, Payment } from '@/lib/db';
+import { Subject, Payment } from '@/lib/db-simple';
 import { formatCurrency, formatDate } from '@/lib/utils';
 import { Upload, Trash2, Check, X } from 'lucide-react';
 
@@ -94,7 +94,7 @@ export default function AdminPage() {
     }
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this subject?')) return;
 
     try {
