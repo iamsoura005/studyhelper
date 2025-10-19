@@ -1,6 +1,12 @@
-# StudyHelper - Study Materials Platform
+# StudyHelper - Online Study Material Platform
 
-A modern Next.js 14 application for uploading and accessing study materials with secure payment verification.
+A modern web application for educators to upload and sell study materials (PDFs) to students with UPI payment integration.
+
+## 🚀 **READY TO DEPLOY!**
+
+**Quick Start:** See `START_HERE.md` for 3-step deployment guide (20 minutes)
+
+**GitHub:** https://github.com/iamsoura005/studyhelper
 
 ## Features
 
